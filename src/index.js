@@ -9,7 +9,7 @@ import EarthSandwitch from './components/EarthSandwitch'
 render(
   <Router history ={browserHistory}>
     <Route path ='/' component ={Layout}>
-      <Route path ='/earth-sandwitch' component ={EarthSandwitch}/>
+      <IndexRoute component ={EarthSandwitch}/>
       {/* <Route path ='/imageanalyse' component={ImageAnalysePage}/> */}
     </Route>
   </Router>,

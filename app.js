@@ -17,16 +17,12 @@ app.use(morgan('dev'))
 app.use(express.static('build'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
-app.use((req, res, next) => {
-  res.handle = (err, data) => res.status(err ? 400 : 200).send(err || data);
-  next();
-});
 
 app.use(webpackDevMiddleware(compiler, {
   publicPath: webpackConfig.output.publicPath, noInfo: true
 }))
 
-app.use(require("webpack-hot-middleware")(compiler));
+app.use(webpackHotMiddleware(compiler))
 
 // if(!app.working) {
 //   make.app(work)
@@ -35,7 +31,7 @@ app.use(require("webpack-hot-middleware")(compiler));
 app.use('/api',require('./routes/api'))
 
 app.use("*", function(req, res) {
-  res.sendFile(path.join(__dirname, "./src/index.html"));
+  res.sendFile(path.join(__dirname, './build/index.html'));
 });
 
 app.listen(PORT, err => {
