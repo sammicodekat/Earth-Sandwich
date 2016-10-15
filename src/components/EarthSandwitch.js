@@ -4,7 +4,6 @@ import Map from './Map'
 export default class EarthSandwitch extends Component {
   constructor() {
     super();
-
   }
   render() {
     return (

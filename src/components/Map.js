@@ -1,46 +1,60 @@
-import React, { Component } from 'react'
-/* global google */
-import {GoogleMapLoader, GoogleMap, Marker} from "react-google-maps";
+import React , { Component } from 'react';
+import ReactDOM from 'react-dom';
+import {Gmaps, Marker, InfoWindow, Circle} from 'react-gmaps';
 
-console.log('window.google: ', window.google);
-
-
-const SimpleMap = (props) => {
-  /*
-  PROPS:
-  markers = array
-  conatinerElementProps
-  */
-
-  const renderMarkers = () => {(
-    props.markers.map((marker, i) => {
-      // all markers: animation, attribution, clickable, cursor, draggable, icon, label, opacity, options, place, position, shape, title, visible, zIndex
-      <Marker {...marker} onRightclick={() => props.onMarkerRightclick(index)} />
-    })
-  )};
-
-  const renderGoogleMap = () => (
-    <GoogleMap
-      ref={(map) => console.log(map)}
-      defaultZoom={3}
-      defaultCenter={{ lat: -25.363882, lng: 131.044922 }}
-      onClick={props.onMapClick}
-      >
-      {renderMarkers()}
-    </GoogleMap>
-  )
-
-  return (
-    <section style={{height: "100%"}}>
-      <GoogleMapLoader
-        query={{ libraries: 'geometry, drawing, places, visualization' }}
-        containerElement={
-          <div {...props.containerElementProps} style={{ height: "100%" }} />
-        }
-        googleMapElement={renderGoogleMap()}
-        />
-    </section>
-  )
+const coords = {
+  lat: 51.5258541,
+  lng: -0.08040660000006028
 };
 
-export default SimpleMap;
+export default class Map extends Component {
+
+  onMapCreated(map) {
+    map.setOptions({
+      disableDefaultUI: true
+    })
+  }
+
+  onDragEnd(e) {
+    console.log('onDragEnd', e);
+  }
+
+  onCloseClick() {
+    console.log('onCloseClick');
+  }
+
+  onClick(e) {
+    console.log('onClick', e);
+  }
+
+  render() {
+    return (
+      <Gmaps
+        width={'800px'}
+        height={'600px'}
+        lat={coords.lat}
+        lng={coords.lng}
+        zoom={12}
+        loadingMessage={'Be happy'}
+        params={{v: '3.exp', key: process.env.API_KEY}}
+        onMapCreated={this.onMapCreated}>
+        <Marker
+          lat={coords.lat}
+          lng={coords.lng}
+          draggable={true}
+          onDragEnd={this.onDragEnd} />
+        <InfoWindow
+          lat={coords.lat}
+          lng={coords.lng}
+          content={'Hello, React :)'}
+          onCloseClick={this.onCloseClick} />
+        <Circle
+          lat={coords.lat}
+          lng={coords.lng}
+          radius={500}
+          onClick={this.onClick} />
+      </Gmaps>
+    );
+  }
+
+}
