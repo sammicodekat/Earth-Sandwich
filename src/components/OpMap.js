@@ -67,7 +67,10 @@ export default class Map extends Component {
           zoom={2}
           loadingMessage={'Be happy'}
           params={{v: '3.exp', key: 'AIzaSyCoAuYhajAzi3Sn7ciZQVaUGe2-rYqN7bU'}}
-          onMapCreated={this.onMapCreated}>
+          onMapCreated={this.onMapCreated}
+          zoomControl = {true}
+          streetViewControl = {true}
+          mapTypeControl = {true}>
           <Marker
             lat={lat}
             lng={lng}

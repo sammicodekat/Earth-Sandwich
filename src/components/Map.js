@@ -4,11 +4,6 @@ import { Gmaps, Marker, InfoWindow, Circle } from 'react-gmaps';
 import MapStore from '../stores/MapStore';
 import MapActions from '../actions/MapActions';
 
-// var coords = {
-//   lat: 51.5258541,
-//   lng: -0.08040660000006028
-// };
-
 export default class Map extends Component {
   constructor() {
     super();
@@ -16,14 +11,12 @@ export default class Map extends Component {
     this.state = {
       lat: defPos.lat,
       lng: defPos.lng,
-      curLat: 37.639781,
-      curLng: -121.800068
+      curLat: defPos.lat,
+      curLng: defPos.lng
     }
     this.onDragEnd = this.onDragEnd.bind(this);
     this._onChange = this._onChange.bind(this);
   }
-
-
 
   onMapCreated(map) {
     map.setOptions({
@@ -57,7 +50,9 @@ export default class Map extends Component {
      let defPos = MapStore.getDefaultPosition()
      this.setState({
       lat: defPos.lat,
-      lng: defPos.lng
+      lng: defPos.lng,
+      curLat: defPos.lat,
+      curLng: defPos.lng
     }, console.log('this.state', this.state))
     //  MapActions.globalPosition(defPos);
    }
@@ -67,6 +62,10 @@ export default class Map extends Component {
       lat: e.latLng.lat(),
       lng: e.latLng.lng()
     }
+    this.setState({
+      curLat: e.latLng.lat(),
+      curLng: e.latLng.lng()
+    })
     MapActions.globalPosition(pos);
   }
 
@@ -78,37 +77,11 @@ export default class Map extends Component {
     console.log('onClick', e);
   }
 
-  handleSearch (e) {
-    e.preventDefault()
-    let {input} = this.refs
-    let address = input.value
-    MapActions.searchAddress(address)
-  }
-
   render() {
-    let { lat, lng } = this.state;
-
-    // let lat = 37.774929;
-    // let lng = -122.419416;
-
-    // let geoLocation = navigator.geolocation.getCurrentPosition((pos) => {
-    //   lat = pos.coords.latitude;
-    //   lng = pos.coords.longitude;
-    //   console.log('lat:', lat, 'lng:', lng);
-    // });
-    // let lat = geoLocation.coords.latitude || 37.774929;
-    // let lng = geoLocation.coords.latitude || -122.419416;
-
+    let { lat, lng , curLat , curLng } = this.state;
     return (
       <div>
-        {/* <h3>Latitude: {curLat},  Longitude: {curLng}</h3> */}
-        <div className="searchBlock">
-          <form onSubmit={(e) => this.handleSearch(e)}>
-            <input type="text" className="searchBar" ref="input" placeholder="please enter address/zipcode" required />
-            <button className="searchBtn">Search</button>
-          </form>
-        </div>
-        {/* <button onClick={}>Go</button> */}
+        <h4>Latitude: {curLat} Longitude: {curLng}</h4>
         <Gmaps
           width={'600px'}
           height={'400px'}
@@ -117,12 +90,17 @@ export default class Map extends Component {
           zoom={2}
           loadingMessage={'Be happy'}
           params={{v: '3.exp', key: 'AIzaSyCoAuYhajAzi3Sn7ciZQVaUGe2-rYqN7bU'}}
-          onMapCreated={this.onMapCreated}>
+          onMapCreated={this.onMapCreated}
+          zoomControl = {true}
+          streetViewControl = {true}
+          mapTypeControl = {true}
+          >
           <Marker
             lat={lat}
             lng={lng}
             draggable={true}
-            onDragEnd={this.onDragEnd} />
+            onDragEnd={this.onDragEnd}
+            icon ={'http://www.clipartbest.com/cliparts/ncE/yzn/ncEyznjpi.gif'} />
           </Gmaps>
         </div>
       );
