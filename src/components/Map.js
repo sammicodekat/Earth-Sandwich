@@ -1,7 +1,7 @@
 import React , { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Gmaps, Marker, InfoWindow, Circle } from 'react-gmaps';
-
+import MapStore from '../stores/MapStore';
 import MapActions from '../actions/MapActions';
 
 // var coords = {
@@ -12,13 +12,15 @@ import MapActions from '../actions/MapActions';
 export default class Map extends Component {
   constructor() {
     super();
+    let defPos = MapStore.getDefaultPosition()
     this.state = {
-      lat: 37.774929,
-      lng: -122.419416,
+      lat: defPos.lat,
+      lng: defPos.lng,
       curLat: 37.639781,
       curLng: -121.800068
     }
     this.onDragEnd = this.onDragEnd.bind(this);
+    this._onChange = this._onChange.bind(this);
   }
 
 
@@ -27,6 +29,13 @@ export default class Map extends Component {
     map.setOptions({
       disableDefaultUI: true
     })
+  }
+
+  componentWillMount () {
+    MapStore.startListening(this._onChange)
+  }
+  componentWillUnmount () {
+    MapStore.stopListening(this._onChange)
   }
 
   componentDidMount() {
@@ -41,20 +50,23 @@ export default class Map extends Component {
       lng: this.state.lng
     }
     console.log("pos in didmount",pos)
-      MapActions.globalPosition(pos);
+    MapActions.globalPosition(pos);
   }
 
-  onDragEnd(e) {
-    console.log('onDragEnd', e);
-    // console.log('lat:', this.state.lat, 'lng:', this.state.lng);
-    console.log('e.latLng.lat()', e.latLng.lat());
-    console.log('e.latLng.lng()', e.latLng.lng());
+   _onChange(){
+     let defPos = MapStore.getDefaultPosition()
+     this.setState({
+      lat: defPos.lat,
+      lng: defPos.lng
+     })
+    //  MapActions.globalPosition(defPos);
+   }
 
+  onDragEnd(e) {
     let pos = {
       lat: e.latLng.lat(),
       lng: e.latLng.lng()
     }
-
     MapActions.globalPosition(pos);
   }
 
@@ -64,6 +76,13 @@ export default class Map extends Component {
 
   onClick(e) {
     console.log('onClick', e);
+  }
+
+  handleSearch (e) {
+    e.preventDefault()
+    let {input} = this.refs
+    let address = input.value
+    MapActions.searchAddress(address)
   }
 
   render() {
@@ -83,8 +102,12 @@ export default class Map extends Component {
     return (
       <div>
         {/* <h3>Latitude: {curLat},  Longitude: {curLng}</h3> */}
-        <input type="number"/>
-        <input type="number"/>
+        <div className="searchBlock">
+          <form onSubmit={(e) => this.handleSearch(e)}>
+            <input type="text" className="searchBar" ref="input" placeholder="please enter address/zipcode" required />
+            <button className="searchBtn">Search</button>
+          </form>
+        </div>
         {/* <button onClick={}>Go</button> */}
         <Gmaps
           width={'600px'}
@@ -100,16 +123,6 @@ export default class Map extends Component {
             lng={lng}
             draggable={true}
             onDragEnd={this.onDragEnd} />
-          {/* <InfoWindow
-            lat={lat}
-            lng={lng}
-            content={'Hello, React :)'}
-            onCloseClick={this.onCloseClick} /> */}
-            <Circle
-              lat={lat}
-              lng={lng}
-              radius={500}
-              onClick={this.onClick} />
           </Gmaps>
         </div>
       );

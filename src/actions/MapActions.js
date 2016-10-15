@@ -1,4 +1,5 @@
 import AppDispatcher from '../AppDispatcher'
+import API from '../API'
 
 const MapActions = {
   globalPosition(pos) {
@@ -7,6 +8,9 @@ const MapActions = {
       type: 'GLOBAL_POSITION',
       payload: { pos }
     })
+  },
+  searchAddress(address){
+    API.searchAddress(address)
   }
 }
 

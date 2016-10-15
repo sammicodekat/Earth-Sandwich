@@ -2,6 +2,10 @@ import { EventEmitter } from 'events';
 import AppDispatcher from '../AppDispatcher'
 
 let currentPos = {};
+let defaultPos ={
+  lat: 37.774929,
+  lng: -122.419416
+}
 let opLat = '';
 let opLng = '';
 
@@ -15,11 +19,13 @@ class MapStore extends EventEmitter {
         currentPos = action.payload.pos;
         opLat = 0-currentPos.lat;
         opLng = currentPos.lng + 180 ;
-        console.log('currentPos in store:', currentPos);
         this.emit('CHANGE');
         break;
-
-
+        case 'GOT_COORD':
+        defaultPos = action.payload;
+        console.log( 'defaultPos' , defaultPos )
+        this.emit('CHANGE');
+        break;
       }
     })
   }
@@ -40,6 +46,9 @@ class MapStore extends EventEmitter {
   }
   getOpLng() {
     return opLng;
+  }
+  getDefaultPosition(){
+    return defaultPos
   }
 }
 
