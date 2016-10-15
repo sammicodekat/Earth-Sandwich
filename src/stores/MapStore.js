@@ -1,13 +1,10 @@
 import { EventEmitter } from 'events';
 import AppDispatcher from '../AppDispatcher'
 
-// let currentPos = {};
 let defaultPos = {
   lat: 37.774929,
   lng: -122.419416
 }
-// let opLat = '';
-// let opLng = '';
 
 class MapStore extends EventEmitter {
   constructor() {
@@ -16,12 +13,10 @@ class MapStore extends EventEmitter {
     AppDispatcher.register(action => {
       switch (action.type) {
         case 'GLOBAL_OP_POSITION':
-          let currentPos = action.payload.pos;
-          // let opLat = 0-currentPos.lat;
-          // let opLng = currentPos.lng + 180 ;
+          let { pos } = action.payload;
           defaultPos = {
-            lat: 0-currentPos.lat,
-            lng: currentPos.lng + 180
+            lat: 0-pos.lat,
+            lng: pos.lng + 180
           }
           this.emit('CHANGE');
           break;
@@ -40,18 +35,6 @@ class MapStore extends EventEmitter {
 
   stopListening(cb) {
     this.removeListener('CHANGE',cb)
-  }
-
-  getCurrentPosition() {
-    return currentPos;
-  }
-
-  getOpLat() {
-    return opLat;
-  }
-
-  getOpLng() {
-    return opLng;
   }
 
   getDefaultPosition(){

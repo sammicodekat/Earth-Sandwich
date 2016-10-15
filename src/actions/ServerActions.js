@@ -8,4 +8,5 @@ const ServerActions = {
     })
   }
 }
+
 export default ServerActions

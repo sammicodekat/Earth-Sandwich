@@ -11,9 +11,15 @@ class OpMapStore extends EventEmitter {
     AppDispatcher.register(action => {
       switch (action.type) {
         case 'GLOBAL_POSITION':
-          let currentPos = action.payload.pos;
-          opLat = 0-currentPos.lat;
-          opLng = currentPos.lng + 180 ;
+          var { lat, lng } = action.payload.pos;
+          opLat = 0 - lat;
+          opLng = 180 + lng;
+          this.emit('CHANGE');
+          break;
+        case 'GOT_COORD':
+          var { lat, lng } = action.payload;
+          opLat = 0 - lat;
+          opLng = 180 + lng;
           this.emit('CHANGE');
           break;
       }
@@ -28,10 +34,6 @@ class OpMapStore extends EventEmitter {
     this.removeListener('CHANGE',cb)
   }
 
-  // getCurrentPosition() {
-  //   return currentPos;
-  // }
-
   getOpLat() {
     return opLat;
   }
@@ -39,10 +41,6 @@ class OpMapStore extends EventEmitter {
   getOpLng() {
     return opLng;
   }
-
-  // getDefaultPosition(){
-  //   return defaultPos
-  // }
 }
 
 export default new OpMapStore;
