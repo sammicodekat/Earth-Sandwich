@@ -9,6 +9,15 @@ const MapActions = {
       payload: { pos }
     })
   },
+
+  globalOpPosition(pos) {
+    console.log('pos in actions:', pos);
+    AppDispatcher.dispatch({
+      type: 'GLOBAL_OP_POSITION',
+      payload: { pos }
+    })
+  },
+
   searchAddress(address){
     API.searchAddress(address)
   }

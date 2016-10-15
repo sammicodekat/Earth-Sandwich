@@ -21,6 +21,7 @@ export default class Map extends Component {
   componentWillUnmount () {
     OpMapStore.stopListening(this._onChange)
   }
+
   _onChange () {
     this.setState({
       lat: OpMapStore.getOpLat(),
@@ -33,12 +34,22 @@ export default class Map extends Component {
       disableDefaultUI: true
     })
   }
+
   onCloseClick() {
     console.log('onCloseClick');
   }
 
   onClick(e) {
     console.log('onClick', e);
+  }
+
+  onDragEnd(e) {
+    let pos = {
+      lat: e.latLng.lat(),
+      lng: e.latLng.lng()
+    }
+    MapActions.globalOpPosition(pos);
+    // console.log('pos', pos);
   }
 
   render() {
@@ -60,7 +71,8 @@ export default class Map extends Component {
           <Marker
             lat={lat}
             lng={lng}
-            draggable={false}
+            draggable={true}
+            onDragEnd={this.onDragEnd} />
             />
             <Circle
               lat={lat}

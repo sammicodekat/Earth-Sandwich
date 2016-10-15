@@ -1,7 +1,7 @@
 import { EventEmitter } from 'events';
 import AppDispatcher from '../AppDispatcher'
 
-let currentPos = {};
+// let currentPos = {};
 let defaultPos = {
   lat: 37.774929,
   lng: -122.419416
@@ -15,12 +15,16 @@ class MapStore extends EventEmitter {
 
     AppDispatcher.register(action => {
       switch (action.type) {
-        // case 'GLOBAL_POSITION':
-        //   currentPos = action.payload.pos;
-        //   opLat = 0-currentPos.lat;
-        //   opLng = currentPos.lng + 180 ;
-        //   this.emit('CHANGE');
-        //   break;
+        case 'GLOBAL_OP_POSITION':
+          let currentPos = action.payload.pos;
+          // let opLat = 0-currentPos.lat;
+          // let opLng = currentPos.lng + 180 ;
+          defaultPos = {
+            lat: 0-currentPos.lat,
+            lng: currentPos.lng + 180
+          }
+          this.emit('CHANGE');
+          break;
         case 'GOT_COORD':
           defaultPos = action.payload;
           console.log( 'defaultPos', defaultPos )
