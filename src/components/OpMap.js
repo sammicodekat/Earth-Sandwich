@@ -1,30 +1,30 @@
 import React , { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Gmaps, Marker, InfoWindow, Circle } from 'react-gmaps';
-import MapStore from '../stores/MapStore'
+import OpMapStore from '../stores/OpMapStore'
 import MapActions from '../actions/MapActions';
 
 export default class Map extends Component {
   constructor() {
     super();
     this.state = {
-      lat: MapStore.getOpLat(),
-      lng: MapStore.getOpLng()
+      lat: OpMapStore.getOpLat(),
+      lng: OpMapStore.getOpLng()
     }
     this._onChange= this._onChange.bind(this);
   }
 
   componentWillMount () {
-    MapStore.startListening(this._onChange)
+    OpMapStore.startListening(this._onChange)
   }
 
   componentWillUnmount () {
-    MapStore.stopListening(this._onChange)
+    OpMapStore.stopListening(this._onChange)
   }
   _onChange () {
     this.setState({
-      lat: MapStore.getOpLat(),
-      lng: MapStore.getOpLng()
+      lat: OpMapStore.getOpLat(),
+      lng: OpMapStore.getOpLng()
     })
   }
 
@@ -55,7 +55,7 @@ export default class Map extends Component {
           lng={lng}
           zoom={2}
           loadingMessage={'Be happy'}
-          params={{v: '3.exp', key: process.env.API_KEY}}
+          params={{v: '3.exp', key: 'AIzaSyCoAuYhajAzi3Sn7ciZQVaUGe2-rYqN7bU'}}
           onMapCreated={this.onMapCreated}>
           <Marker
             lat={lat}

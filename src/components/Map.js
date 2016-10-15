@@ -58,7 +58,7 @@ export default class Map extends Component {
      this.setState({
       lat: defPos.lat,
       lng: defPos.lng
-     })
+    }, console.log('this.state', this.state))
     //  MapActions.globalPosition(defPos);
    }
 
@@ -116,7 +116,7 @@ export default class Map extends Component {
           lng={lng}
           zoom={2}
           loadingMessage={'Be happy'}
-          params={{v: '3.exp', key: process.env.API_KEY}}
+          params={{v: '3.exp', key: 'AIzaSyCoAuYhajAzi3Sn7ciZQVaUGe2-rYqN7bU'}}
           onMapCreated={this.onMapCreated}>
           <Marker
             lat={lat}
