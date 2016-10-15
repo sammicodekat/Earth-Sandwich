@@ -3,13 +3,16 @@ import ReactDOM from 'react-dom';
 import { Gmaps, Marker, InfoWindow, Circle } from 'react-gmaps';
 import OpMapStore from '../stores/OpMapStore'
 import MapActions from '../actions/MapActions';
+import { Segment , Label, Icon } from 'semantic-ui-react'
 
 export default class Map extends Component {
   constructor() {
     super();
     this.state = {
       lat: OpMapStore.getOpLat(),
-      lng: OpMapStore.getOpLng()
+      lng: OpMapStore.getOpLng(),
+      curLat: OpMapStore.getOpLat(),
+      curLng: OpMapStore.getOpLng()
     }
     this._onChange= this._onChange.bind(this);
   }
@@ -25,7 +28,9 @@ export default class Map extends Component {
   _onChange () {
     this.setState({
       lat: OpMapStore.getOpLat(),
-      lng: OpMapStore.getOpLng()
+      lng: OpMapStore.getOpLng(),
+      curLat: OpMapStore.getOpLat(),
+      curLng: OpMapStore.getOpLng()
     })
   }
 
@@ -48,17 +53,27 @@ export default class Map extends Component {
       lat: e.latLng.lat(),
       lng: e.latLng.lng()
     }
-    MapActions.globalOpPosition(pos);
-    // console.log('pos', pos);
+
+    this.setState({
+      curLat: e.latLng.lat(),
+      curLng: e.latLng.lng()
+    },MapActions.globalOpPosition(pos))
   }
 
   render() {
-    let { lat, lng } = this.state;
-
+    let { lat, lng , curLat , curLng } = this.state;
     return (
-      <div>
-        {/* <h3>Latitude: {curLat},  Longitude: {curLng}</h3> */}
-        {/* <button onClick={}>Go</button> */}
+      <Segment raised>
+        <Label as='a' color='yellow' image>
+          <Icon name='map pin' />
+          Latitude:
+          <Label.Detail>{curLat}</Label.Detail>
+        </Label>
+        <Label as='a' color='red' image>
+          <Icon name='map pin' />
+          Longitude:
+          <Label.Detail>{curLng}</Label.Detail>
+        </Label>
         <Gmaps
           width={'600px'}
           height={'400px'}
@@ -83,7 +98,7 @@ export default class Map extends Component {
               radius={500}
               onClick={this.onClick} />
           </Gmaps>
-        </div>
+        </Segment>
       );
     }
 

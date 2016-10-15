@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Gmaps, Marker, InfoWindow, Circle } from 'react-gmaps';
 import MapStore from '../stores/MapStore';
 import MapActions from '../actions/MapActions';
+import { Segment , Label, Icon } from 'semantic-ui-react'
 
 export default class Map extends Component {
   constructor() {
@@ -46,16 +47,16 @@ export default class Map extends Component {
     MapActions.globalPosition(pos);
   }
 
-   _onChange(){
-     let defPos = MapStore.getDefaultPosition()
-     this.setState({
+  _onChange(){
+    let defPos = MapStore.getDefaultPosition()
+    this.setState({
       lat: defPos.lat,
       lng: defPos.lng,
       curLat: defPos.lat,
       curLng: defPos.lng
     }, console.log('this.state', this.state))
     //  MapActions.globalPosition(defPos);
-   }
+  }
 
   onDragEnd(e) {
     let pos = {
@@ -80,14 +81,23 @@ export default class Map extends Component {
   render() {
     let { lat, lng , curLat , curLng } = this.state;
     return (
-      <div>
-        <h4>Latitude: {curLat} Longitude: {curLng}</h4>
+      <Segment raised>
+        <Label as='a' color='yellow' image>
+          <Icon name='map pin' />
+          Latitude:
+          <Label.Detail>{curLat}</Label.Detail>
+        </Label>
+        <Label as='a' color='red' image>
+          <Icon name='map pin' />
+          Longitude:
+          <Label.Detail>{curLng}</Label.Detail>
+        </Label>
         <Gmaps
-          width={'600px'}
-          height={'400px'}
+          width={'600'}
+          height={'400'}
           lat={lat}
           lng={lng}
-          zoom={2}
+          zoom={4}
           loadingMessage={'Be happy'}
           params={{v: '3.exp', key: 'AIzaSyCoAuYhajAzi3Sn7ciZQVaUGe2-rYqN7bU'}}
           onMapCreated={this.onMapCreated}
@@ -101,9 +111,9 @@ export default class Map extends Component {
             draggable={true}
             onDragEnd={this.onDragEnd}
             icon ={'http://www.clipartbest.com/cliparts/ncE/yzn/ncEyznjpi.gif'} />
-          </Gmaps>
-        </div>
-      );
-    }
-
+        </Gmaps>
+      </Segment>
+    )
   }
+
+}
