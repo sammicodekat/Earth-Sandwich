@@ -36,6 +36,12 @@ export default class Map extends Component {
         lng: pos.coords.longitude
       })
     });
+    let pos = {
+      lat: this.state.lat,
+      lng: this.state.lng
+    }
+    console.log("pos in didmount",pos)
+      MapActions.globalPosition(pos);
   }
 
   onDragEnd(e) {
@@ -85,7 +91,7 @@ export default class Map extends Component {
           height={'400px'}
           lat={lat}
           lng={lng}
-          zoom={12}
+          zoom={2}
           loadingMessage={'Be happy'}
           params={{v: '3.exp', key: process.env.API_KEY}}
           onMapCreated={this.onMapCreated}>
