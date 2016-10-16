@@ -13,8 +13,8 @@ export default class EarthSandwitch extends Component {
     return (
       <Grid centered  textAlign='center' padded>
         <Row columns={2}>
-          <Column textAlign='center'><h4>Top of Sandwich</h4><Map /><CloseByList/></Column>
-          <Column textAlign='center'><h4>Bottom of Sandwich</h4><OpMap /><FarList/></Column>
+          <Column textAlign='center'><Map /><CloseByList/></Column>
+          <Column textAlign='center'><OpMap /><FarList/></Column>
         </Row>
       </Grid>
     )

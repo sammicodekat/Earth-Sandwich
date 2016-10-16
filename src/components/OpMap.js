@@ -59,6 +59,7 @@ export default class Map extends Component {
     let { lat, lng } = this.state;
     return (
       <Segment raised inverted color='orange' tertiary>
+         <Label attached='top right'>SANDWICH BOTTOM</Label>
         <OpPosition />
         <Gmaps
           width={'600px'}
