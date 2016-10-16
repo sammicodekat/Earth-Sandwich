@@ -54,7 +54,6 @@ export default class Map extends Component {
       lat: defPos.lat,
       lng: defPos.lng
     })
-    //  MapActions.globalPosition(defPos);
   }
 
   onDragEnd(e) {
@@ -76,7 +75,7 @@ export default class Map extends Component {
   render() {
     let { lat, lng } = this.state;
     return (
-      <Segment raised inverted color='yellow' tertiary>
+      <Segment raised inverted color='yellow' tertiary className="map">
         <Position />
         <Gmaps
           width={'600px'}
@@ -85,7 +84,7 @@ export default class Map extends Component {
           lng={lng}
           zoom={4}
           loadingMessage={'Loading map...'}
-          params={{v: '3.exp', key: 'AIzaSyCoAuYhajAzi3Sn7ciZQVaUGe2-rYqN7bU'}}
+          params={{v: '3.exp', key: process.env.API_KEY}}
           onMapCreated={this.onMapCreated}
           zoomControl = {true}
           streetViewControl = {true}
@@ -96,7 +95,8 @@ export default class Map extends Component {
             lng={lng}
             draggable={true}
             onDragEnd={this.onDragEnd}
-            icon ={'https://dl2.pushbulletusercontent.com/ne5DjsVyfE8fGzVcVtKm3icoy0BA3VJ2/face.png'} />
+            icon ={'https://dl2.pushbulletusercontent.com/ne5DjsVyfE8fGzVcVtKm3icoy0BA3VJ2/face.png'}
+            animation = {'DROP'} />
         </Gmaps>
       </Segment>
     )

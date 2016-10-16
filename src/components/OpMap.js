@@ -67,7 +67,7 @@ export default class Map extends Component {
           lng={lng}
           zoom={2}
           loadingMessage={'Loading map...'}
-          params={{v: '3.exp', key: 'AIzaSyCoAuYhajAzi3Sn7ciZQVaUGe2-rYqN7bU'}}
+          params={{v: '3.exp', key: process.env.API_KEY}}
           onMapCreated={this.onMapCreated}
           zoomControl = {true}
           streetViewControl = {true}

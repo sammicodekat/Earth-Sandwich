@@ -11,7 +11,9 @@ const API = {
     })
       .catch(console.error)
   },
+  searchDetail(detail){
 
+  },
   showCloseBy(pos){
     let coord = `${pos.lat},${pos.lng}`;
     get(`/api/places/${coord}`)

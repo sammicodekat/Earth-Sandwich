@@ -20,6 +20,9 @@ const MapActions = {
 
   searchAddress(address){
     API.searchAddress(address)
+  },
+  searchDetail(detail){
+    API.searchDetail(detail)
   }
 }
 
