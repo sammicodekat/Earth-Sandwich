@@ -1,9 +1,11 @@
 import React , { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Gmaps, Marker, InfoWindow, Circle } from 'react-gmaps';
+import { Segment , Label, Icon } from 'semantic-ui-react'
+
 import MapStore from '../stores/MapStore';
 import MapActions from '../actions/MapActions';
-import { Segment , Label, Icon } from 'semantic-ui-react'
+import Position from './Position'
 
 export default class Map extends Component {
   constructor() {
@@ -28,6 +30,7 @@ export default class Map extends Component {
   componentWillMount () {
     MapStore.startListening(this._onChange)
   }
+
   componentWillUnmount () {
     MapStore.stopListening(this._onChange)
   }
@@ -47,7 +50,7 @@ export default class Map extends Component {
     MapActions.globalPosition(pos);
   }
 
-  _onChange(){
+  _onChange() {
     let defPos = MapStore.getDefaultPosition()
     this.setState({
       lat: defPos.lat,
@@ -63,10 +66,10 @@ export default class Map extends Component {
       lat: e.latLng.lat(),
       lng: e.latLng.lng()
     }
-    this.setState({
-      curLat: e.latLng.lat(),
-      curLng: e.latLng.lng()
-    })
+    // this.setState({
+    //   curLat: e.latLng.lat(),
+    //   curLng: e.latLng.lng()
+    // })
     MapActions.globalPosition(pos);
   }
 
@@ -82,6 +85,7 @@ export default class Map extends Component {
     let { lat, lng , curLat , curLng } = this.state;
     return (
       <Segment raised>
+        <Position />
         <Label as='a' color='yellow' image>
           <Icon name='map pin' />
           Latitude:

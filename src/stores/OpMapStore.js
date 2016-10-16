@@ -13,7 +13,7 @@ class OpMapStore extends EventEmitter {
         case 'GLOBAL_POSITION':
           var { lat, lng } = action.payload.pos;
           opLat = 0 - lat;
-          opLng = 180 + lng;
+          opLng = 180 + lng ;
           this.emit('CHANGE');
           break;
         case 'GOT_COORD':

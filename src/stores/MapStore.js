@@ -36,7 +36,7 @@ class MapStore extends EventEmitter {
   stopListening(cb) {
     this.removeListener('CHANGE',cb)
   }
-
+  
   getDefaultPosition(){
     return defaultPos
   }

@@ -1,9 +1,11 @@
 import React , { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Gmaps, Marker, InfoWindow, Circle } from 'react-gmaps';
+import { Segment , Label, Icon } from 'semantic-ui-react'
+
 import OpMapStore from '../stores/OpMapStore'
 import MapActions from '../actions/MapActions';
-import { Segment , Label, Icon } from 'semantic-ui-react'
+import OpPosition from './OpPosition'
 
 export default class Map extends Component {
   constructor() {
@@ -14,6 +16,7 @@ export default class Map extends Component {
       curLat: OpMapStore.getOpLat(),
       curLng: OpMapStore.getOpLng()
     }
+    this.onDragEnd = this.onDragEnd.bind(this);
     this._onChange= this._onChange.bind(this);
   }
 
@@ -54,16 +57,18 @@ export default class Map extends Component {
       lng: e.latLng.lng()
     }
 
-    this.setState({
-      curLat: e.latLng.lat(),
-      curLng: e.latLng.lng()
-    },MapActions.globalOpPosition(pos))
+    // this.setState({
+    //   curLat: e.latLng.lat(),
+    //   curLng: e.latLng.lng()
+    // })
+    MapActions.globalOpPosition(pos)
   }
 
   render() {
     let { lat, lng , curLat , curLng } = this.state;
     return (
       <Segment raised>
+        <OpPosition />
         <Label as='a' color='yellow' image>
           <Icon name='map pin' />
           Latitude:
