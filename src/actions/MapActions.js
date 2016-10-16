@@ -8,6 +8,7 @@ const MapActions = {
       type: 'GLOBAL_POSITION',
       payload: { pos }
     })
+    API.showCloseBy(pos);
   },
 
   globalOpPosition(pos) {
@@ -16,6 +17,7 @@ const MapActions = {
       type: 'GLOBAL_OP_POSITION',
       payload: { pos }
     })
+
   },
 
   searchAddress(address){

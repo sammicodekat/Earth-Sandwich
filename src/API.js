@@ -11,11 +11,16 @@ const API = {
     })
       .catch(console.error)
   },
-  showCloseBy(coord){
-    get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${coord}&radius=500&key=${process.env.API_KEY}`)
+
+  showCloseBy(pos){
+    let coord = `${pos.lat},${pos.lng}`;
+    // console.log('coord:', coord)
+    // get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${coord}&radius=500&key=$AIzaSyCoAuYhajAzi3Sn7ciZQVaUGe2-rYqN7bU`)
+    get(`/api/places/${coord}`)
     .then(res => {
+
       console.log('res:', res);
-      ServerActions.gotNearBy(res.data)
+
     })
       .catch(console.error)
   }

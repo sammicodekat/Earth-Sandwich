@@ -29,6 +29,7 @@ export default class Position extends Component {
       lat,
       lng
     })
+
     console.log('state in Position:', this.state);
   }
 
