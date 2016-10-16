@@ -10,6 +10,7 @@ form {
 .map {
   width :700px;
   min-width: :700px;
+  /*background-color: darkseagreen;*/
 }
 
 .left {
@@ -18,4 +19,8 @@ form {
 
 .right {
   text-align: right;
+}
+
+#travolta {
+  border-bottom: 3px solid #000000;
 }

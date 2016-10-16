@@ -39,7 +39,7 @@ export default class FarList extends Component {
     if (places.length === 0) {
       Places = (
         <div>
-          <img src="http://hermann.is/img/confused_travolta_loop.gif" alt="There is not much here"/>
+          <img id='travolta' src="http://hermann.is/img/confused_travolta_loop.gif" alt="There is not much here"/>
           <h4>There is not much here</h4>
         </div>
       )
@@ -62,7 +62,7 @@ export default class FarList extends Component {
 
     return (
       <List relaxed animated verticalAlign='middle'>
-        <h3>Farthest from You:</h3>
+        <h3>Places Farthest from You:</h3>
         {Places}
       </List>
     )

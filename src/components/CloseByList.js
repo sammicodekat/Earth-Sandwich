@@ -53,7 +53,7 @@ export default class CloseByList extends Component {
 
     return (
       <List relaxed animated verticalAlign='middle'>
-        <h3>Closest to You:</h3>
+        <h3>Places Closest to You:</h3>
         {Places}
       </List>
     )

@@ -1,5 +1,5 @@
 
-import { Menu , Segment ,Label } from 'semantic-ui-react'
+import { Menu, Segment, Label, Icon } from 'semantic-ui-react'
 import React, { Component } from 'react'
 import { Link } from 'react-router'
 import classNames from 'classnames'
@@ -34,6 +34,7 @@ export default class Layout extends Component {
             <img src='https://dl2.pushbulletusercontent.com/q0sPSO1AGwZRM7vWxaEBeGwBmilpHdR4/logo.png' />
             Made by Donovan & Sammi
           </Label> */}
+          <Icon name='warning sign' />
           WARNING: This sandwich may contain dairy, soy, wheat, tree nuts, fish, coconut, eggs, peanuts, shellfish, fruit, rice, garlic, oats, meat, hot peppers, gluten, tartrazine, sulfites, penicillin, dilantin, cats, cosmetics, latex, water, salt, fungicide, and/or mayonnaise
         </Segment>
       </div>

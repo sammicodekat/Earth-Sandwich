@@ -80,7 +80,7 @@ export default class Map extends Component {
   render() {
     let { lat, lng } = this.state;
     return (
-      <Segment raised inverted color='yellow' tertiary className="map">
+      <Segment raised>
          <Label attached='top left'>SANDWICH TOP</Label>
         <Position />
         <Gmaps
