@@ -30,12 +30,10 @@ export default class CloseByList extends Component {
   render() {
     let { places } = this.state
     let Places = ''
-    // console.log('places', places)
     if (places.length === 0) {
       Places = (
         <h4>You Are in the Middle of Nowhere!</h4>
       )
-      console.log('places is empty')
     } else {
        Places = places.map( place => {
         let { icon, name , id , reference , vicinity} = place ;

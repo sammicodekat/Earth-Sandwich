@@ -11,7 +11,6 @@ class PositionStore extends EventEmitter {
     AppDispatcher.register(action => {
       switch (action.type) {
         case 'GLOBAL_POSITION':
-          // let { pos } = action.payload;
           position = action.payload.pos;
           opPosition.lat = 0-action.payload.pos.lat
           opPosition.lng = action.payload.pos.lng+180

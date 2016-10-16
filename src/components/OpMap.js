@@ -31,11 +31,6 @@ export default class Map extends Component {
       lat: OpMapStore.getOpLat(),
       lng: OpMapStore.getOpLng()
     })
-    // let pos = {
-    //   lat: OpMapStore.getOpLat(),
-    //   lng: OpMapStore.getOpLng()
-    // }
-    // MapActions.globalOpPosition(pos)
   }
 
   onMapCreated(map) {
@@ -63,8 +58,6 @@ export default class Map extends Component {
     }
     MapActions.globalOpPosition(pos);
     MapActions.showList(switchPos);
-    // MapActions.globalPosition(switchPos)
-
   }
 
   render() {

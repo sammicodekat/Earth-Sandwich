@@ -44,7 +44,6 @@ export default class Map extends Component {
       lat: this.state.lat,
       lng: this.state.lng
     }
-    // console.log("pos in didmount",pos)
     MapActions.globalPosition(pos);
   }
 
@@ -67,14 +66,6 @@ export default class Map extends Component {
     }
     MapActions.showOpList(switchPos);
     MapActions.globalPosition(pos)
-  }
-
-  onCloseClick() {
-    console.log('onCloseClick');
-  }
-
-  onClick(e) {
-    console.log('onClick', e);
   }
 
   render() {

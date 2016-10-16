@@ -43,9 +43,7 @@ export default class FarList extends Component {
           <h4>There is not much here</h4>
         </div>
       )
-      console.log('places is empty')
     } else {
-      // if(places){
       Places = places.map( place => {
         let { icon, name , id , reference , vicinity} = place ;
         return (

@@ -29,7 +29,6 @@ export default class OpPosition extends Component {
       lat,
       lng
     })
-    console.log('state in OpPosition:', this.state);
   }
 
   render() {
