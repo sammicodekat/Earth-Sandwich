@@ -1,7 +1,6 @@
 import React , { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { List,Item, Image, Label, Icon } from 'semantic-ui-react'
-import _ from 'lodash'
 
 import ListStore from '../stores/ListStore'
 import MapActions from '../actions/MapActions'
@@ -38,15 +37,14 @@ export default class FarList extends Component {
     if(places){
       Places = places.map( place => {
         let { icon, name , id , reference , vicinity} = place ;
-        const colors = [
-          'red', 'orange', 'yellow', 'olive', 'green', 'teal', 'blue',
-          'violet', 'purple', 'pink', 'brown']
         return (
-          <Label as='a' color={_.sample(colors)} image key={id} onClick={this.searchDetail.bind(null,reference)}>
-            <img src={icon} />
-            {name}
-            <Label.Detail>{vicinity}</Label.Detail>
-          </Label>
+          <List.Item key = {id}>
+            <Image avatar src={icon} />
+            <List.Content>
+              <List.Header>{name}</List.Header>
+              <List.Description>{vicinity}</List.Description>
+            </List.Content>
+          </List.Item>
         )
       })
     }

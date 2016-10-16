@@ -1,5 +1,5 @@
 
-import { Menu } from 'semantic-ui-react'
+import { Menu , Segment ,Label } from 'semantic-ui-react'
 import React, { Component } from 'react'
 import { Link } from 'react-router'
 import classNames from 'classnames'
@@ -16,19 +16,26 @@ export default class Layout extends Component {
       <div>
         <Menu inverted color ='blue' className="menu" stackable>
           <Menu.Item>
-          <img src='https://dl2.pushbulletusercontent.com/q0sPSO1AGwZRM7vWxaEBeGwBmilpHdR4/logo.png' />
-        </Menu.Item>
-        <Menu.Item>
-          <h1>EarthSandwich</h1>
-        </Menu.Item>
-        <Menu.Item className={classNames({active: path === '/'})}><Link to="/">Create Your Sandwich</Link></Menu.Item>
-        <Menu.Menu position='right'>
-        <Menu.Item> <SearchBar /></Menu.Item>
-        </Menu.Menu>
-      </Menu>
+            <img src='https://dl2.pushbulletusercontent.com/q0sPSO1AGwZRM7vWxaEBeGwBmilpHdR4/logo.png' />
+          </Menu.Item>
+          <Menu.Item>
+            <h1>EarthSandwich</h1>
+          </Menu.Item>
+          <Menu.Item className={classNames({active: path === '/'})}><Link to="/">Create Your Sandwich</Link></Menu.Item>
+          <Menu.Menu position='right'>
+            <Menu.Item> <SearchBar /></Menu.Item>
+          </Menu.Menu>
+        </Menu>
         <div className="container">
-        {this.props.children}
-      </div>
+          {this.props.children}
+        </div>
+        <Segment inverted color='blue' tertiary textAlign = 'center'>
+          <Label as='a' image>
+            <img src='https://dl2.pushbulletusercontent.com/q0sPSO1AGwZRM7vWxaEBeGwBmilpHdR4/logo.png' />
+             Made by Donovan & Sammi
+          </Label>
+          Disclaimer:   blablablablabalbalbalababalbalbalalbalababla
+        </Segment>
       </div>
     )
   }
