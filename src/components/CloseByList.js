@@ -2,28 +2,28 @@ import React , { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { List,Item, Image, Label, Icon } from 'semantic-ui-react'
 
-import MapStore from '../stores/MapStore'
+import ListStore from '../stores/ListStore'
 
 export default class CloseByList extends Component {
   constructor() {
     super();
     this.state={
-      places: MapStore.getCloseBy()
+      places: ListStore.getCloseBy()
     }
     this._onChange = this._onChange.bind(this);
   }
 
   componentWillMount () {
-    MapStore.startListening(this._onChange)
+    ListStore.startListening(this._onChange)
   }
 
   componentWillUnmount () {
-    MapStore.stopListening(this._onChange)
+    ListStore.stopListening(this._onChange)
   }
 
   _onChange() {
     this.setState({
-      places: MapStore.getCloseBy()
+      places: ListStore.getCloseBy()
     })
   }
 

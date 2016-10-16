@@ -12,6 +12,12 @@ const ServerActions = {
       type: 'GOT_PLACES',
       payload: results
     })
+  },
+  gotFarPlaces(results) {
+    AppDispatcher.dispatch({
+      type: 'GOT_FAR_PLACES',
+      payload: results
+    })
   }
 }
 

@@ -1,27 +1,22 @@
 import { EventEmitter } from 'events';
 import AppDispatcher from '../AppDispatcher'
 
-let defaultPos = {
-  lat: 37.774929,
-  lng: -122.419416
-}
 
-class MapStore extends EventEmitter {
+let closeByPlaces = []
+let farPlaces = []
+
+class ListStore extends EventEmitter {
   constructor() {
     super();
 
     AppDispatcher.register(action => {
       switch (action.type) {
-        case 'GLOBAL_OP_POSITION':
-        let { pos } = action.payload;
-        defaultPos = {
-          lat: 0-pos.lat,
-          lng: pos.lng + 180
-        }
+        case 'GOT_PLACES':
+        closeByPlaces = action.payload;
         this.emit('CHANGE');
         break;
-        case 'GOT_COORD':
-        defaultPos = action.payload;
+        case 'GOT_FAR_PLACES':
+        farPlaces = action.payload;
         this.emit('CHANGE');
         break;
       }
@@ -36,9 +31,12 @@ class MapStore extends EventEmitter {
     this.removeListener('CHANGE',cb)
   }
 
-  getDefaultPosition(){
-    return defaultPos
+  getCloseBy(){
+    return closeByPlaces
+  }
+  getFarPlace(){
+    return farPlaces
   }
 }
 
-export default new MapStore;
+export default new ListStore;

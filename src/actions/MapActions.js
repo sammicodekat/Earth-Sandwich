@@ -3,7 +3,6 @@ import API from '../API'
 
 const MapActions = {
   globalPosition(pos) {
-    console.log('pos in actions:', pos);
     AppDispatcher.dispatch({
       type: 'GLOBAL_POSITION',
       payload: { pos }
@@ -12,12 +11,11 @@ const MapActions = {
   },
 
   globalOpPosition(pos) {
-    console.log('pos in actions:', pos);
     AppDispatcher.dispatch({
       type: 'GLOBAL_OP_POSITION',
       payload: { pos }
     })
-
+    API.showFarPlace(pos);
   },
 
   searchAddress(address){

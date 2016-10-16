@@ -20,6 +20,16 @@ const API = {
       ServerActions.gotPlaces(data.results)
     })
       .catch(console.error)
+  },
+
+  showFarPlace(pos){
+    let coord = `${pos.lat},${pos.lng}`;
+    get(`/api/places/${coord}`)
+    .then(res => {
+      let { data } = res;
+      ServerActions.gotFarPlaces(data.results)
+    })
+      .catch(console.error)
   }
 }
 

@@ -26,7 +26,9 @@ export default class Layout extends Component {
         <Menu.Item> <SearchBar /></Menu.Item>
         </Menu.Menu>
       </Menu>
+        <div className="container">
         {this.props.children}
+      </div>
       </div>
     )
   }

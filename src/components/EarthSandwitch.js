@@ -4,16 +4,17 @@ import React, { Component } from 'react'
 import Map from './Map'
 import OpMap from './OpMap'
 import CloseByList from './CloseByList'
+import FarList from './FarList'
 export default class EarthSandwitch extends Component {
   constructor() {
     super();
   }
   render() {
     return (
-      <Grid>
+      <Grid centered  textAlign='center' padded>
         <Row columns={2}>
-          <Column ><h4>Your location</h4><Map /><CloseByList/></Column>
-          <Column><h4>The opposite side</h4><OpMap /></Column>
+          <Column textAlign='center'><h4>Top of Sandwich</h4><Map /><CloseByList/></Column>
+          <Column textAlign='center'><h4>Bottom of Sandwich</h4><OpMap /><FarList/></Column>
         </Row>
       </Grid>
     )
