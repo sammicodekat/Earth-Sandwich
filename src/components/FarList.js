@@ -27,20 +27,25 @@ export default class FarList extends Component {
       places: ListStore.getFarPlace()
     })
   }
-  
+
   searchDetail(){
     MapActions.searchDetail(reference)
   }
 
   render() {
     let { places } = this.state
-    let Places = ''
+    let Places = '';
 
     if (places.length === 0) {
-      Places = 'Nothing to show'
+      Places = (
+        <div>
+          <img src="http://hermann.is/img/confused_travolta_loop.gif" alt="There is not much here"/>
+          <h4>There is not much here</h4>
+        </div>
+      )
       console.log('places is empty')
     } else {
-    // if(places){
+      // if(places){
       Places = places.map( place => {
         let { icon, name , id , reference , vicinity} = place ;
         return (
@@ -57,6 +62,7 @@ export default class FarList extends Component {
 
     return (
       <List relaxed animated verticalAlign='middle'>
+        <h3>Farthest from You:</h3>
         {Places}
       </List>
     )

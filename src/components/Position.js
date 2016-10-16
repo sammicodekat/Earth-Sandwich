@@ -34,9 +34,9 @@ export default class Position extends Component {
   }
 
   render() {
-    let {lat,lng} = this.state
+    let { lat, lng } = this.state
     return (
-      <div>
+      <div className="left">
       <Label as='a' color='blue' image>
         <Icon name='map pin' />
         Latitude:

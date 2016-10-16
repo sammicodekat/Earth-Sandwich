@@ -30,12 +30,13 @@ export default class CloseByList extends Component {
   render() {
     let { places } = this.state
     let Places = ''
-    console.log('places', places)
+    // console.log('places', places)
     if (places.length === 0) {
-      Places = 'Nothing to show'
+      Places = (
+        <h4>You Are in the Middle of Nowhere!</h4>
+      )
       console.log('places is empty')
     } else {
-      // if (places !== []) {
        Places = places.map( place => {
         let { icon, name , id , reference , vicinity} = place ;
         return (
@@ -52,6 +53,7 @@ export default class CloseByList extends Component {
 
     return (
       <List relaxed animated verticalAlign='middle'>
+        <h3>Closest to You:</h3>
         {Places}
       </List>
     )

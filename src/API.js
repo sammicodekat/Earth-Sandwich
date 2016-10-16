@@ -15,7 +15,6 @@ const API = {
         lng: 180 + lng
       }
       this.showFarPlace(switchPos);
-      // this.showFarPlace(location);
     })
     .catch(console.error)
   },

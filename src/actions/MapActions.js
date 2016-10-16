@@ -18,9 +18,18 @@ const MapActions = {
     API.showFarPlace(pos);
   },
 
+  showOpList(pos) {
+    API.showFarPlace(pos);
+  },
+
+  showList(pos) {
+    API.showCloseBy(pos);
+  },
+
   searchAddress(address){
     API.searchAddress(address)
   },
+
   searchDetail(detail){
     API.searchDetail(detail)
   }

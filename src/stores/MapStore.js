@@ -13,17 +13,17 @@ class MapStore extends EventEmitter {
     AppDispatcher.register(action => {
       switch (action.type) {
         case 'GLOBAL_OP_POSITION':
-        let { pos } = action.payload;
-        defaultPos = {
-          lat: 0-pos.lat,
-          lng: pos.lng + 180
-        }
-        this.emit('CHANGE');
-        break;
+          let { pos } = action.payload;
+          defaultPos = {
+            lat: 0-pos.lat,
+            lng: pos.lng + 180
+          }
+          this.emit('CHANGE');
+          break;
         case 'GOT_COORD':
-        defaultPos = action.payload;
-        this.emit('CHANGE');
-        break;
+          defaultPos = action.payload;
+          this.emit('CHANGE');
+          break;
       }
     })
   }
@@ -36,7 +36,7 @@ class MapStore extends EventEmitter {
     this.removeListener('CHANGE',cb)
   }
 
-  getDefaultPosition(){
+  getDefaultPosition() {
     return defaultPos
   }
 }

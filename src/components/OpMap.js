@@ -61,8 +61,10 @@ export default class Map extends Component {
       lat: 0 - e.latLng.lat(),
       lng: 180 + e.latLng.lng()
     }
-    MapActions.globalOpPosition(pos)
-    MapActions.globalPosition(switchPos)
+    MapActions.globalOpPosition(pos);
+    MapActions.showList(switchPos);
+    // MapActions.globalPosition(switchPos)
+
   }
 
   render() {

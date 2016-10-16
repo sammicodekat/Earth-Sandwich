@@ -35,7 +35,7 @@ export default class OpPosition extends Component {
   render() {
       let {lat,lng} = this.state
     return (
-      <div>
+      <div className="right">
       <Label as='a' color='blue' image>
         <Icon name='map pin' />
         Latitude:
