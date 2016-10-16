@@ -6,7 +6,7 @@ const API = {
     // console.log('key:', process.env.API_KEY)
     get(`https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${process.env.API_KEY}`)
     .then(res => {
-      console.log('res:', res);
+      // console.log('res:', res);
       ServerActions.gotCoord(res.data.results[0].geometry.location)
     })
       .catch(console.error)
@@ -18,8 +18,8 @@ const API = {
     // get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${coord}&radius=500&key=$AIzaSyCoAuYhajAzi3Sn7ciZQVaUGe2-rYqN7bU`)
     get(`/api/places/${coord}`)
     .then(res => {
-
-      console.log('res:', res);
+      let { data } = res;
+      console.log('data:', data);
 
     })
       .catch(console.error)

@@ -66,7 +66,7 @@ export default class Map extends Component {
           lat={lat}
           lng={lng}
           zoom={2}
-          loadingMessage={'Be happy'}
+          loadingMessage={'Loading map...'}
           params={{v: '3.exp', key: 'AIzaSyCoAuYhajAzi3Sn7ciZQVaUGe2-rYqN7bU'}}
           onMapCreated={this.onMapCreated}
           zoomControl = {true}

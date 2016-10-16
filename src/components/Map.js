@@ -79,12 +79,12 @@ export default class Map extends Component {
       <Segment raised>
         <Position />
         <Gmaps
-          width={'600'}
-          height={'400'}
+          width={'600px'}
+          height={'400px'}
           lat={lat}
           lng={lng}
           zoom={4}
-          loadingMessage={'Be happy'}
+          loadingMessage={'Loading map...'}
           params={{v: '3.exp', key: 'AIzaSyCoAuYhajAzi3Sn7ciZQVaUGe2-rYqN7bU'}}
           onMapCreated={this.onMapCreated}
           zoomControl = {true}
