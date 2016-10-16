@@ -14,13 +14,10 @@ const API = {
 
   showCloseBy(pos){
     let coord = `${pos.lat},${pos.lng}`;
-    // console.log('coord:', coord)
-    // get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${coord}&radius=500&key=$AIzaSyCoAuYhajAzi3Sn7ciZQVaUGe2-rYqN7bU`)
     get(`/api/places/${coord}`)
     .then(res => {
       let { data } = res;
-      console.log('data:', data);
-
+      ServerActions.gotPlaces(data.results)
     })
       .catch(console.error)
   }

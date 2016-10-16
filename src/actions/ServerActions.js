@@ -6,6 +6,12 @@ const ServerActions = {
       type: 'GOT_COORD',
       payload: coord
     })
+  },
+  gotPlaces(results) {
+    AppDispatcher.dispatch({
+      type: 'GOT_PLACES',
+      payload: results
+    })
   }
 }
 
