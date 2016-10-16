@@ -44,7 +44,7 @@ export default class Map extends Component {
       lat: this.state.lat,
       lng: this.state.lng
     }
-    console.log("pos in didmount",pos)
+    // console.log("pos in didmount",pos)
     MapActions.globalPosition(pos);
   }
 
@@ -61,7 +61,12 @@ export default class Map extends Component {
       lat: e.latLng.lat(),
       lng: e.latLng.lng()
     }
+    let switchPos = {
+      lat: 0 - e.latLng.lat(),
+      lng: 180 + e.latLng.lng()
+    }
     MapActions.globalPosition(pos);
+    MapActions.globalOpPosition(switchPos)
   }
 
   onCloseClick() {
@@ -79,7 +84,7 @@ export default class Map extends Component {
          <Label attached='top left'>SANDWICH TOP</Label>
         <Position />
         <Gmaps
-          width={'600px'}
+          width={'100%'}
           height={'400px'}
           lat={lat}
           lng={lng}

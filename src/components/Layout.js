@@ -30,11 +30,11 @@ export default class Layout extends Component {
           {this.props.children}
         </div>
         <Segment inverted color='blue' tertiary textAlign = 'center'>
-          <Label as='a' image>
+          {/* <Label as='a' image>
             <img src='https://dl2.pushbulletusercontent.com/q0sPSO1AGwZRM7vWxaEBeGwBmilpHdR4/logo.png' />
-             Made by Donovan & Sammi
-          </Label>
-          Disclaimer:   blablablablabalbalbalababalbalbalalbalababla
+            Made by Donovan & Sammi
+          </Label> */}
+          WARNING: This sandwich may contain dairy, soy, wheat, tree nuts, fish, coconut, eggs, peanuts, shellfish, fruit, rice, garlic, oats, meat, hot peppers, gluten, tartrazine, sulfites, penicillin, dilantin, cats, cosmetics, latex, water, salt, fungicide, and/or mayonnaise
         </Segment>
       </div>
     )

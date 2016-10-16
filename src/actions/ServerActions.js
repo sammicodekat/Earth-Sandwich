@@ -7,12 +7,14 @@ const ServerActions = {
       payload: coord
     })
   },
+
   gotPlaces(results) {
     AppDispatcher.dispatch({
       type: 'GOT_PLACES',
       payload: results
     })
   },
+  
   gotFarPlaces(results) {
     AppDispatcher.dispatch({
       type: 'GOT_FAR_PLACES',

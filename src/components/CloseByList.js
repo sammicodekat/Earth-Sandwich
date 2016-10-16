@@ -29,8 +29,13 @@ export default class CloseByList extends Component {
 
   render() {
     let { places } = this.state
-    let Places =''
-    if(places){
+    let Places = ''
+    console.log('places', places)
+    if (places.length === 0) {
+      Places = 'Nothing to show'
+      console.log('places is empty')
+    } else {
+      // if (places !== []) {
        Places = places.map( place => {
         let { icon, name , id , reference , vicinity} = place ;
         return (

@@ -31,6 +31,11 @@ export default class Map extends Component {
       lat: OpMapStore.getOpLat(),
       lng: OpMapStore.getOpLng()
     })
+    // let pos = {
+    //   lat: OpMapStore.getOpLat(),
+    //   lng: OpMapStore.getOpLng()
+    // }
+    // MapActions.globalOpPosition(pos)
   }
 
   onMapCreated(map) {
@@ -52,7 +57,12 @@ export default class Map extends Component {
       lat: e.latLng.lat(),
       lng: e.latLng.lng()
     }
+    let switchPos = {
+      lat: 0 - e.latLng.lat(),
+      lng: 180 + e.latLng.lng()
+    }
     MapActions.globalOpPosition(pos)
+    MapActions.globalPosition(switchPos)
   }
 
   render() {
@@ -62,7 +72,7 @@ export default class Map extends Component {
          <Label attached='top right'>SANDWICH BOTTOM</Label>
         <OpPosition />
         <Gmaps
-          width={'600px'}
+          width={'100%'}
           height={'400px'}
           lat={lat}
           lng={lng}

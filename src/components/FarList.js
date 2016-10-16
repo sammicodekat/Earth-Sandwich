@@ -27,14 +27,20 @@ export default class FarList extends Component {
       places: ListStore.getFarPlace()
     })
   }
+  
   searchDetail(){
     MapActions.searchDetail(reference)
   }
 
   render() {
     let { places } = this.state
-    let Places =''
-    if(places){
+    let Places = ''
+
+    if (places.length === 0) {
+      Places = 'Nothing to show'
+      console.log('places is empty')
+    } else {
+    // if(places){
       Places = places.map( place => {
         let { icon, name , id , reference , vicinity} = place ;
         return (
