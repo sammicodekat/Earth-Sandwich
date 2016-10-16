@@ -12,9 +12,7 @@ export default class Map extends Component {
     super();
     this.state = {
       lat: OpMapStore.getOpLat(),
-      lng: OpMapStore.getOpLng(),
-      curLat: OpMapStore.getOpLat(),
-      curLng: OpMapStore.getOpLng()
+      lng: OpMapStore.getOpLng()
     }
     this.onDragEnd = this.onDragEnd.bind(this);
     this._onChange= this._onChange.bind(this);
@@ -31,9 +29,7 @@ export default class Map extends Component {
   _onChange () {
     this.setState({
       lat: OpMapStore.getOpLat(),
-      lng: OpMapStore.getOpLng(),
-      curLat: OpMapStore.getOpLat(),
-      curLng: OpMapStore.getOpLng()
+      lng: OpMapStore.getOpLng()
     })
   }
 
@@ -56,29 +52,14 @@ export default class Map extends Component {
       lat: e.latLng.lat(),
       lng: e.latLng.lng()
     }
-
-    // this.setState({
-    //   curLat: e.latLng.lat(),
-    //   curLng: e.latLng.lng()
-    // })
     MapActions.globalOpPosition(pos)
   }
 
   render() {
-    let { lat, lng , curLat , curLng } = this.state;
+    let { lat, lng } = this.state;
     return (
       <Segment raised>
         <OpPosition />
-        <Label as='a' color='yellow' image>
-          <Icon name='map pin' />
-          Latitude:
-          <Label.Detail>{curLat}</Label.Detail>
-        </Label>
-        <Label as='a' color='red' image>
-          <Icon name='map pin' />
-          Longitude:
-          <Label.Detail>{curLng}</Label.Detail>
-        </Label>
         <Gmaps
           width={'600px'}
           height={'400px'}
@@ -95,7 +76,8 @@ export default class Map extends Component {
             lat={lat}
             lng={lng}
             draggable={true}
-            onDragEnd={this.onDragEnd} />
+            onDragEnd={this.onDragEnd}
+            icon ={'https://dl2.pushbulletusercontent.com/0zqKqnx6NSgRPEZpzIDlel8Jun40MKk5/back.png'} />
             />
             <Circle
               lat={lat}

@@ -33,8 +33,20 @@ export default class Position extends Component {
   }
 
   render() {
+    let {lat,lng} = this.state
     return (
-      <div>pos</div>
+      <div>
+      <Label as='a' color='yellow' image>
+        <Icon name='map pin' />
+        Latitude:
+        <Label.Detail>{lat}</Label.Detail>
+      </Label>
+      <Label as='a' color='red' image>
+        <Icon name='map pin' />
+        Longitude:
+        <Label.Detail>{lng}</Label.Detail>
+      </Label>
+    </div>
     )
   }
 }

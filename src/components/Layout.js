@@ -15,6 +15,9 @@ export default class Layout extends Component {
     return (
       <div>
         <Menu inverted color ='blue' className="menu" stackable>
+          <Menu.Item>
+          <img src='https://dl2.pushbulletusercontent.com/q0sPSO1AGwZRM7vWxaEBeGwBmilpHdR4/logo.png' />
+        </Menu.Item>
         <Menu.Item>
           <h1>EarthSandwich</h1>
         </Menu.Item>

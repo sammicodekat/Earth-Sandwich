@@ -13,12 +13,14 @@ class PositionStore extends EventEmitter {
         case 'GLOBAL_POSITION':
           // let { pos } = action.payload;
           position = action.payload.pos;
-          console.log('position', position);
+          opPosition.lat = 0-action.payload.pos.lat
+          opPosition.lng = action.payload.pos.lng+180
           this.emit('CHANGE');
           break;
         case 'GLOBAL_OP_POSITION':
           opPosition = action.payload.pos;
-          console.log( 'opPosition', opPosition )
+          position.lat = 0 -action.payload.pos.lat
+          position.lng = action.payload.pos.lng-180
           this.emit('CHANGE');
           break;
       }

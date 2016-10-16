@@ -13,9 +13,7 @@ export default class Map extends Component {
     let defPos = MapStore.getDefaultPosition()
     this.state = {
       lat: defPos.lat,
-      lng: defPos.lng,
-      curLat: defPos.lat,
-      curLng: defPos.lng
+      lng: defPos.lng
     }
     this.onDragEnd = this.onDragEnd.bind(this);
     this._onChange = this._onChange.bind(this);
@@ -54,10 +52,8 @@ export default class Map extends Component {
     let defPos = MapStore.getDefaultPosition()
     this.setState({
       lat: defPos.lat,
-      lng: defPos.lng,
-      curLat: defPos.lat,
-      curLng: defPos.lng
-    }, console.log('this.state', this.state))
+      lng: defPos.lng
+    })
     //  MapActions.globalPosition(defPos);
   }
 
@@ -66,10 +62,6 @@ export default class Map extends Component {
       lat: e.latLng.lat(),
       lng: e.latLng.lng()
     }
-    // this.setState({
-    //   curLat: e.latLng.lat(),
-    //   curLng: e.latLng.lng()
-    // })
     MapActions.globalPosition(pos);
   }
 
@@ -82,20 +74,10 @@ export default class Map extends Component {
   }
 
   render() {
-    let { lat, lng , curLat , curLng } = this.state;
+    let { lat, lng } = this.state;
     return (
       <Segment raised>
         <Position />
-        <Label as='a' color='yellow' image>
-          <Icon name='map pin' />
-          Latitude:
-          <Label.Detail>{curLat}</Label.Detail>
-        </Label>
-        <Label as='a' color='red' image>
-          <Icon name='map pin' />
-          Longitude:
-          <Label.Detail>{curLng}</Label.Detail>
-        </Label>
         <Gmaps
           width={'600'}
           height={'400'}
@@ -114,7 +96,7 @@ export default class Map extends Component {
             lng={lng}
             draggable={true}
             onDragEnd={this.onDragEnd}
-            icon ={'http://www.clipartbest.com/cliparts/ncE/yzn/ncEyznjpi.gif'} />
+            icon ={'https://dl2.pushbulletusercontent.com/ne5DjsVyfE8fGzVcVtKm3icoy0BA3VJ2/face.png'} />
         </Gmaps>
       </Segment>
     )
