@@ -18,3 +18,8 @@ form {
 #travolta {
   border-bottom: 3px solid #000000;
 }
+
+.list{
+  height: 150px;
+overflow: scroll;
+}

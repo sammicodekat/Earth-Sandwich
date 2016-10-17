@@ -59,7 +59,7 @@ export default class FarList extends Component {
     }
 
     return (
-      <List relaxed animated verticalAlign='middle'>
+      <List relaxed animated verticalAlign='middle' className='list'>
         <h3>Places Farthest from You:</h3>
         {Places}
       </List>
