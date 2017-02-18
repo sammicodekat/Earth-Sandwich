@@ -3,4 +3,4 @@
 ##Made with
 * React/Redux
 * Google Map API & Google Places API
-[Live Demo](https://rocky-temple-36000.herokuapp.com/)
+###[Live Demo](https://rocky-temple-36000.herokuapp.com/)
