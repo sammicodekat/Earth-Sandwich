@@ -4,4 +4,4 @@
 * React/Redux
 * Google Map API & Google Places API
 
-###[Live Demo](https://rocky-temple-36000.herokuapp.com/)
+###[Live Demo](http://earthsandwich.codecatdesigns.com)
